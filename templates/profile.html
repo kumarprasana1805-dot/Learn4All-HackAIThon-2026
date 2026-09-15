@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}My Profile{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell narrow-shell">
+  <div class="page-hero reveal"><div><span class="eyebrow light">MY PROFILE</span><h1>Your learning <em>identity</em>.</h1><p>Keep your name and accessibility preferences current so the experience can respond to you.</p></div><div class="profile-hero-avatar">{{ user['name'][0]|upper }}</div></div>
+  <section class="glass-panel profile-panel reveal"><div class="profile-intro"><div class="profile-avatar">{{ user['name'][0]|upper }}</div><div><span class="eyebrow">ACCOUNT</span><h2>{{ user['name'] }}</h2><p>{{ user['email'] }}</p></div></div><form method="post" class="premium-form"><label>Full Name<input name="name" value="{{ user['name'] }}" required></label><label>Email Address<input value="{{ user['email'] }}" disabled></label><label>Accessibility Needs <small>(optional)</small><input name="accessibility_needs" value="{{ user['accessibility_needs'] or '' }}" placeholder="e.g. captions, screen reader"></label><button class="premium-button" type="submit">Save Changes <span>→</span></button></form></section>
+</section>
+{% endblock %}

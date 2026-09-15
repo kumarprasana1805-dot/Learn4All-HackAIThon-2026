@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Settings{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell narrow-shell">
+  <div class="page-hero reveal"><div><span class="eyebrow light">SETTINGS</span><h1>Shape your <em>experience</em>.</h1><p>Presentation preferences are separated from your learning data.</p></div></div>
+  <section class="glass-panel reveal"><form method="post" class="settings-list"><label class="setting-row"><span><b>Premium motion</b><small>Use subtle reveal and hover animations across the interface.</small></span><input type="checkbox" checked disabled></label><label class="setting-row"><span><b>Accessible resource priority</b><small>When accessibility needs are saved, matching accessible resources are prioritized.</small></span><input type="checkbox" checked disabled></label><label class="setting-row"><span><b>Live calculations</b><small>Performance views recalculate from the latest saved assessment data.</small></span><input type="checkbox" checked disabled></label><button class="premium-button" type="submit">Save Preferences <span>→</span></button></form></section>
+</section>
+{% endblock %}

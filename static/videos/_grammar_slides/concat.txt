@@ -1,0 +1,13 @@
+file '/mnt/data/work/static/videos/_grammar_slides/00.png'
+duration 10
+file '/mnt/data/work/static/videos/_grammar_slides/01.png'
+duration 10
+file '/mnt/data/work/static/videos/_grammar_slides/02.png'
+duration 10
+file '/mnt/data/work/static/videos/_grammar_slides/03.png'
+duration 10
+file '/mnt/data/work/static/videos/_grammar_slides/04.png'
+duration 10
+file '/mnt/data/work/static/videos/_grammar_slides/05.png'
+duration 10
+file '/mnt/data/work/static/videos/_grammar_slides/05.png'

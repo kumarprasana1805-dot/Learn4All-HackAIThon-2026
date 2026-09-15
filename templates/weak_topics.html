@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Weak Topics{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell">
+  <div class="page-hero focus-hero reveal"><div><span class="eyebrow light">FOCUS AREAS</span><h1>Turn gaps into <em>growth</em>.</h1><p>These topics are calculated from your topic averages and surfaced only when they fall below {{ weak_threshold }}%.</p></div><div class="hero-stat"><strong>{{ metrics.weak|length }}</strong><span>Current focus areas</span></div></div>
+  {% if metrics.weak %}
+    <div class="focus-grid-premium">
+    {% for x in metrics.weak %}
+      <article class="focus-card-premium reveal"><div class="focus-top"><span class="focus-mark big">!</span><span class="score-pill red">{{ x.percentage }}%</span></div><span class="eyebrow">{{ x.subject }}</span><h2>{{ x.topic }}</h2><p>Your current topic average is below the focus threshold. Review targeted resources, then add a new assessment to see the change.</p><a href="{{ url_for('resources', topic=x.topic) }}" class="premium-button">Find Resources <span>→</span></a></article>
+    {% endfor %}
+    </div>
+  {% else %}
+    <section class="empty-spotlight reveal"><div class="spotlight-mark">✓</div><span class="eyebrow">ALL CLEAR</span><h2>No weak topics right now.</h2><p>{% if metrics.assessments %}Your recorded topic averages are all at or above {{ weak_threshold }}%.{% else %}Add an assessment and this page will automatically identify topics that need attention.{% endif %}</p><a href="{{ url_for('assessments') }}" class="premium-button">Add Assessment <span>→</span></a></section>
+  {% endif %}
+</section>
+{% endblock %}

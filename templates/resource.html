@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+{% block title %}{{ resource.title }}{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell resource-detail-shell">
+  <a class="back-link" href="{{ url_for('resources', topic=resource.topic) }}">← Back to {{ resource.topic }} resources</a>
+
+  <div class="resource-detail-hero reveal">
+    <div>
+      <div class="library-top">
+        <span class="resource-icon {{ resource.category }}">{{ '▶' if resource.category=='video' else '▤' if resource.category=='notes' else '✓' if resource.category=='quiz' else '✦' }}</span>
+        <span class="resource-type">{{ resource.category|upper }}</span>
+        {% if resource.accessible %}<span class="accessibility">Accessible</span>{% endif %}
+      </div>
+      <span class="eyebrow light">{{ resource.subject }} · {{ resource.topic }}</span>
+      <h1>{{ resource.title }}</h1>
+      <p>{{ content.summary }}</p>
+    </div>
+    <div class="resource-detail-badge"><strong>{{ resource.category|capitalize }}</strong><span>Focused learning</span></div>
+  </div>
+
+  {% if resource.category == 'video' %}
+  <section class="resource-player reveal" data-video-player>
+    <div class="video-stage">
+      {% if video_url %}
+      <div class="real-video-wrap">
+        <video id="lesson-video" class="lesson-video" controls preload="metadata" playsinline>
+          <source src="{{ video_url }}" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+        <div class="video-fallback-note">Topic-focused video lesson · {{ resource.topic }}</div>
+      </div>
+      {% elif content.video %}
+      <div class="video-visual">
+        <div class="video-orbit orbit-a"></div><div class="video-orbit orbit-b"></div>
+        <div class="video-topic-mark">{{ resource.topic[:1]|upper }}</div>
+        <div class="video-chapter-label">TOPIC-SPECIFIC INTERACTIVE VIDEO LESSON</div>
+        <h2 id="video-title">{{ content.video[0] }}</h2>
+        <p id="video-caption">{{ content.video_bodies[0] if content.video_bodies else 'Press play to start the guided lesson.' }}</p>
+      </div>
+      <div class="video-controls">
+        <button id="video-play" class="player-play" type="button" aria-label="Play lesson">▶</button>
+        <div class="video-track"><span id="video-progress"></span></div>
+        <span id="video-time">0:00 / {{ '%d'|format(content.video|length * 18) }}:00</span>
+        <button id="video-reset" class="video-control-button" type="button">↻ Restart</button>
+      </div>
+      {% else %}
+      <div class="video-visual">
+        <div class="video-topic-mark">!</div>
+        <div class="video-chapter-label">VERIFICATION REQUIRED</div>
+        <h2>Topic-specific video is temporarily unavailable</h2>
+        <p>{{ content.source_note }}</p>
+      </div>
+      {% endif %}
+    </div>
+    <div class="video-chapters" id="video-chapters">
+      {% for chapter in content.video %}
+      <button type="button" class="video-chapter {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}"><b>{{ '%02d'|format(loop.index) }}</b><span>{{ chapter }}</span></button>
+      {% endfor %}
+    </div>
+    <div class="lesson-panel is-active" id="lesson"><h2>What you will learn</h2><div class="lesson-points">{% for p in content.sections %}<div><b>{{ '%02d'|format(loop.index) }}</b><span>{{ p[0] }}</span></div>{% endfor %}</div></div>
+  </section>
+
+  {% elif resource.category == 'notes' %}
+  <section class="glass-panel resource-reading reveal detailed-notes">
+    <div class="notes-header"><div><span class="eyebrow">DETAILED NOTES</span><h2>Understand it, don't just memorize it.</h2>{% if content.source_title %}<p class="panel-copy">Topic-specific notes sourced from <a href="{{ content.source_url }}" target="_blank" rel="noopener">{{ content.source_title }}</a>.</p>{% endif %}{% if content.source_note %}<p class="resource-source-note">{{ content.source_note }}</p>{% endif %}</div><div class="notes-count">{{ content.sections|length }}<small>sections</small></div></div>
+    {% if content.sections %}
+    <div class="note-list expanded-notes">
+      {% for heading, body in content.sections %}
+      <article><span>{{ '%02d'|format(loop.index) }}</span><div><h3>{{ heading }}</h3><p>{{ body }}</p></div></article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="study-tip"><b>Content verification</b><span>{{ content.source_note }}</span></div>
+    {% endif %}
+
+    {% if content.revision and content.sections %}
+    <div class="revision-grid">
+      <div class="revision-card"><span class="eyebrow">ONE-MINUTE REVISION</span><h3>Must remember</h3><ul>{% for item in content.revision %}<li>{{ item }}</li>{% endfor %}</ul></div>
+      <div class="revision-card"><span class="eyebrow">FORMULAS / RULES</span><h3>Quick reference</h3><ul>{% for item in content.formulae %}<li><code>{{ item }}</code></li>{% endfor %}</ul></div>
+      <div class="revision-card"><span class="eyebrow">EXAM CHECK</span><h3>Avoid easy mistakes</h3><ul>{% for item in content.tips %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    </div>
+    {% endif %}
+    <div class="study-tip"><b>Active recall</b><span>Read one section, hide it, explain the idea from memory, then check what you missed. Finish the revision by solving a fresh practice question.</span></div>
+  </section>
+
+  {% elif resource.category == 'quiz' %}
+  <section class="glass-panel resource-reading reveal">
+    <div class="quiz-head"><div><span class="eyebrow">ADAPTIVE KNOWLEDGE CHECK</span><h2>20 questions · new order every attempt</h2><p class="panel-copy">This topic has a 20+ question bank. Questions and answer choices are shuffled every time you start or retry the quiz.</p></div><div class="quiz-counter" id="quiz-counter">20 Q</div></div>
+    <div class="quiz-status" id="quiz-status" role="status" aria-live="polite">Loading your topic quiz…</div>
+    <script type="application/json" id="quiz-bank-data">{{ content.quiz|tojson }}</script>
+    <form class="resource-quiz" id="resource-quiz" novalidate></form>
+    <div class="quiz-actions"><button class="premium-button" id="quiz-submit" type="button">Check My Quiz →</button><button class="outline-button" id="quiz-new" type="button">↻ New Quiz</button></div>
+    <div id="quiz-result" class="quiz-result" aria-live="polite"></div>
+  </section>
+
+  {% else %}
+  <section class="glass-panel resource-reading reveal practical-lab">
+    <div class="practice-header"><div><span class="eyebrow">PRACTICAL LAB</span><h2>Learn by doing</h2><p class="panel-copy">Follow the method, inspect the diagram, then solve the guided tasks. The practice set is designed to change the way you approach the topic.</p></div><div class="lab-badge">STEP<br><strong>01 → 06</strong></div></div>
+
+    <div class="practical-diagram" data-topic="{{ resource.topic|lower }}">
+      {% if resource.topic|lower == 'electricity' %}
+        <div class="circuit-wire"></div><div class="circuit-node node-a"></div><div class="circuit-node node-b"></div><div class="battery-symbol">+ −</div><div class="resistor-symbol">Ω</div><div class="current-arrow">I →</div><span class="diagram-label">Simple circuit: source → current → resistor</span>
+      {% elif resource.topic|lower == 'thermodynamics' %}
+        <div class="system-box">SYSTEM<div class="system-particle">• • •</div></div><div class="heat-arrow">Q →</div><div class="work-arrow">← W</div><span class="diagram-label">Energy crosses the system boundary as heat or work</span>
+      {% elif resource.topic|lower == 'photosynthesis' %}
+        <div class="sun-symbol">☀</div><div class="leaf-symbol">🌿</div><div class="diagram-flow flow-in">CO₂ + H₂O →</div><div class="diagram-flow flow-out">← Glucose + O₂</div><span class="diagram-label">Light energy drives the process in green tissues</span>
+      {% elif resource.topic|lower == 'geometry' %}
+        <div class="geo-triangle"></div><div class="geo-angle">60°</div><div class="geo-line"></div><span class="diagram-label">Sketch → label → choose the rule → calculate</span>
+      {% elif resource.topic|lower == 'fractions' %}
+        <div class="fraction-bars"><i></i><i class="filled"></i><i class="filled"></i><i></i></div><div class="fraction-text">3 / 4</div><span class="diagram-label">Same-sized parts make a fraction meaningful</span>
+      {% elif resource.topic|lower == 'algebra' %}
+        <div class="equation-card">3x + 5 = 20<br><span>−5 &nbsp; ↓ &nbsp; −5</span><br>3x = 15<br><span>÷3 &nbsp; ↓ &nbsp; ÷3</span><br><strong>x = 5</strong></div><span class="diagram-label">Keep both sides balanced at every step</span>
+      {% else %}
+        <div class="generic-process"><span>INPUT</span><b>→</b><span>RULE</span><b>→</b><span>EXAMPLE</span><b>→</b><span>CHECK</span></div><span class="diagram-label">A repeatable method for {{ resource.topic }}</span>
+      {% endif %}
+    </div>
+
+    <div class="lab-steps">
+      {% for heading, body in content.sections %}
+      <article class="lab-step"><div class="lab-step-number">{{ '%02d'|format(loop.index) }}</div><div><h3>{{ heading }}</h3><p>{{ body }}</p><button type="button" class="step-check" onclick="this.classList.toggle('done'); this.textContent=this.classList.contains('done')?'✓ Completed':'Mark complete'">Mark complete</button></div></article>
+      {% endfor %}
+    </div>
+
+    <div class="practice-list guided-practice" id="practice-list" data-practice='{{ content.practice|tojson|e }}' data-answers='{{ content.answers|tojson|e }}'>
+      <div class="practice-list-title"><span class="eyebrow">CHALLENGE SET</span><h3>Fresh practice set every time</h3></div>
+      <div id="practice-items"></div>
+      <button type="button" class="outline-button" id="practice-new">↻ New Practice Set</button>
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="resource-next-actions reveal"><a class="outline-button" href="{{ url_for('resources', topic=resource.topic) }}">More {{ resource.topic }} resources</a><a class="premium-button" href="{{ url_for('assessments') }}">Reassess Progress →</a></div>
+</section>
+
+<script>
+(function(){
+  const player = document.querySelector('[data-video-player]');
+  if (player) {
+    const chapters = {{ content.video|tojson }};
+    const buttons = [...document.querySelectorAll('.video-chapter')];
+    const realVideo = document.getElementById('lesson-video');
+    if (realVideo) {
+      const chapterDuration = () => (realVideo.duration && isFinite(realVideo.duration)) ? realVideo.duration / chapters.length : 10;
+      function syncVideo(){
+        const d = chapterDuration();
+        const idx = Math.min(chapters.length - 1, Math.floor((realVideo.currentTime || 0) / d));
+        buttons.forEach((b,i)=>b.classList.toggle('active', i===idx));
+      }
+      realVideo.addEventListener('timeupdate', syncVideo);
+      realVideo.addEventListener('loadedmetadata', syncVideo);
+      buttons.forEach((b,i)=>b.addEventListener('click',()=>{
+        const d=chapterDuration();
+        realVideo.currentTime = Math.min(Math.max(0, i*d), Math.max(0, (realVideo.duration||1)-0.1));
+        realVideo.play().catch(()=>{});
+        syncVideo();
+      }));
+      syncVideo();
+    } else {
+      const title = document.getElementById('video-title');
+      const caption = document.getElementById('video-caption');
+      const progress = document.getElementById('video-progress');
+      const time = document.getElementById('video-time');
+      const play = document.getElementById('video-play');
+      const reset = document.getElementById('video-reset');
+      let index=0,timer=null,playing=false;
+      const duration=12;
+      const bodies={{ content.video_bodies|default([])|tojson }};
+      function render(){ title.textContent=chapters[index]; caption.textContent=bodies[index] || 'Study this chapter carefully, then move to the next one.'; progress.style.width=(((index+1)/chapters.length)*100)+'%'; const total=chapters.length*duration; const fmt=(s)=>`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; time.textContent=`${fmt(index*duration)} / ${fmt(total)}`; buttons.forEach((b,i)=>b.classList.toggle('active',i===index)); }
+      function tick(){ index++; if(index>=chapters.length){playing=false;clearInterval(timer);timer=null;index=chapters.length-1;play.textContent='▶ Replay';} render(); }
+      function start(){if(playing)return;playing=true;play.textContent='Ⅱ Pause';timer=setInterval(tick,duration*1000);render();}
+      play.addEventListener('click',()=>{if(playing){playing=false;clearInterval(timer);timer=null;play.textContent='▶ Resume';}else start();});
+      reset.addEventListener('click',()=>{clearInterval(timer);timer=null;playing=false;index=0;play.textContent='▶ Play';render();});
+      buttons.forEach((b,i)=>b.addEventListener('click',()=>{index=i;render();})); render();
+    }
+  }
+
+  const practice = document.getElementById('practice-list');
+  if(practice){
+    const questions = JSON.parse(practice.dataset.practice || '[]');
+    const answers = JSON.parse(practice.dataset.answers || '[]');
+    const box = document.getElementById('practice-items');
+    const fresh = document.getElementById('practice-new');
+    const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+    function buildPractice(){
+      const pairs = questions.map((q,i)=>({q,a:answers[i]}));
+      const selected = shuffle(pairs).slice(0, Math.min(7,pairs.length));
+      box.innerHTML = selected.map((item,i)=>`<article><span>${String(i+1).padStart(2,'0')}</span><div><b>${item.q}</b><button type="button" class="answer-toggle">Show answer</button><small>${item.a}</small></div></article>`).join('');
+      box.querySelectorAll('.answer-toggle').forEach(btn=>btn.addEventListener('click',()=>{btn.nextElementSibling.classList.toggle('show'); btn.textContent=btn.nextElementSibling.classList.contains('show')?'Hide answer':'Show answer';}));
+    }
+    fresh.addEventListener('click',buildPractice);
+    buildPractice();
+  }
+
+  const quiz = document.getElementById('resource-quiz');
+  if(quiz){
+    let bank = [];
+    const submit = document.getElementById('quiz-submit');
+    const fresh = document.getElementById('quiz-new');
+    const result = document.getElementById('quiz-result');
+    const counter = document.getElementById('quiz-counter');
+    const status = document.getElementById('quiz-status');
+    const shuffle = arr => {
+      const copy = arr.slice();
+      for(let i=copy.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [copy[i],copy[j]]=[copy[j],copy[i]];
+      }
+      return copy;
+    };
+    try {
+      const source = document.getElementById('quiz-bank-data');
+      bank = JSON.parse(source ? source.textContent : '[]');
+      if(!Array.isArray(bank)) bank=[];
+    } catch(e) {
+      bank=[];
+    }
+    function buildQuiz(){
+      if(!bank.length){
+        quiz.innerHTML='<div class="quiz-empty">This topic does not have enough verified material to build a factual quiz yet. Please refresh the resource after reconnecting to the internet.</div>';
+        submit.disabled=true;
+        fresh.disabled=false;
+        status.textContent='Quiz source unavailable';
+        counter.textContent='0 Q';
+        return;
+      }
+      current = shuffle(bank).slice(0, Math.min(20, bank.length));
+      quiz.innerHTML = current.map((item,i)=>{
+        const options = Array.isArray(item.options) ? item.options.map((text,idx)=>({text:String(text),correct:idx===Number(item.answer)})) : [];
+        const mixed = shuffle(options);
+        return `<fieldset><legend>${i+1}. ${escapeHtml(item.question)}</legend>${mixed.map((o,j)=>`<label><input type="radio" name="q${i}" value="${o.correct?'1':'0'}" required> <span>${escapeHtml(o.text)}</span></label>`).join('')}</fieldset>`;
+      }).join('');
+      counter.textContent = `${current.length} Q`;
+      status.textContent = `${current.length} verified topic questions loaded`;
+      result.className='quiz-result'; result.textContent='';
+      submit.disabled=false;
+    }
+    let current=[];
+    function escapeHtml(value){
+      return String(value).replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+    }
+    submit.addEventListener('click',()=>{
+      if(!current.length) return;
+      const unanswered=[];
+      current.forEach((_,i)=>{
+        if(!quiz.querySelector(`input[name="q${i}"]:checked`)) unanswered.push(i+1);
+      });
+      if(unanswered.length){
+        result.textContent=`Please answer all questions. Missing: ${unanswered.slice(0,8).join(', ')}${unanswered.length>8?'…':''}.`;
+        result.className='quiz-result show error';
+        const first=quiz.querySelector(`input[name="q${unanswered[0]-1}"]`);
+        if(first) first.closest('fieldset').scrollIntoView({behavior:'smooth',block:'center'});
+        return;
+      }
+      let score=0;
+      current.forEach((_,i)=>{ const selected=quiz.querySelector(`input[name="q${i}"]:checked`); if(selected && selected.value==='1') score++; });
+      const pct=Math.round(score/current.length*100);
+      result.textContent=`Result: ${score}/${current.length} correct (${pct}%). ${pct>=80?'Excellent — strong command of the topic.':pct>=60?'Good progress — review the missed questions and try a new set.':'Keep practising — revisit the notes, then start a fresh randomized set.'}`;
+      result.className='quiz-result show';
+      result.scrollIntoView({behavior:'smooth',block:'nearest'});
+    });
+    fresh.addEventListener('click',buildQuiz);
+    buildQuiz();
+  }
+
+})();
+</script>
+{% endblock %}

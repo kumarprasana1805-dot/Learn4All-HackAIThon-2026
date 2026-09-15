@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Performance{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell">
+  <div class="page-hero reveal">
+    <div><span class="eyebrow light">PERFORMANCE</span><h1>See how your learning is <em>moving</em>.</h1><p>Every number below is calculated from the assessments you entered.</p></div>
+    <div class="hero-stat"><strong>{{ metrics.overall }}%</strong><span>Overall average</span></div>
+  </div>
+  <div class="inner-grid">
+    <section class="glass-panel reveal">
+      <div class="panel-heading"><div><span class="eyebrow">SUBJECTS</span><h2>Your performance map</h2></div><span class="live-badge">LIVE DATA</span></div>
+      {% if metrics.subject_items %}
+        <div class="large-bars">
+        {% for s in metrics.subject_items %}
+          <div class="large-bar-row"><div><b>{{ s.name }}</b><strong>{{ s.average }}%</strong></div><div class="progress-track tall"><i style="width:{{ [s.average,100]|min }}%"></i></div></div>
+        {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-feature"><span class="empty-icon">◫</span><h3>No performance data yet.</h3><p>Add an assessment to create your first subject performance view.</p><a class="premium-button" href="{{ url_for('assessments') }}">Add Assessment →</a></div>
+      {% endif %}
+    </section>
+    <section class="glass-panel reveal insight-panel">
+      <span class="eyebrow">READ YOUR DATA</span>
+      <h2>What the numbers tell you</h2>
+      {% if metrics.assessments %}
+        <div class="insight-stat"><strong>{{ metrics.weak|length }}</strong><span>focus topic{{ 's' if metrics.weak|length != 1 else '' }}</span></div>
+        <div class="insight-stat"><strong>{{ metrics.strengths|length }}</strong><span>strength topic{{ 's' if metrics.strengths|length != 1 else '' }}</span></div>
+        <p>Your averages update immediately after each saved assessment. Use Focus Areas for topics below {{ weak_threshold }}% and Resources for targeted material.</p>
+      {% else %}
+        <p class="big-empty-copy">There is nothing to judge yet — and that is intentional. Learn4All does not invent a performance score before you provide one.</p>
+      {% endif %}
+    </section>
+  </div>
+  <section class="glass-panel reveal">
+    <div class="panel-heading"><div><span class="eyebrow">RECENT RESULTS</span><h2>Assessment history</h2></div><a href="{{ url_for('assessments') }}">Manage Assessments →</a></div>
+    {% if metrics.assessments %}
+      <div class="table-premium"><div class="table-head"><span>Subject</span><span>Topic</span><span>Score</span><span>Date</span></div>
+      {% for a in metrics.assessments %}
+        <div class="table-row"><span>{{ a.subject }}</span><span>{{ a.topic }}</span><span class="score-pill {% if a.percentage < weak_threshold %}red{% elif a.percentage >= strength_threshold %}gold{% endif %}">{{ a.percentage }}%</span><span>{{ a.taken_display }}</span></div>
+      {% endfor %}</div>
+    {% else %}<div class="empty-feature compact"><h3>No results recorded.</h3><p>Your assessment history will appear here after your first submission.</p></div>{% endif %}
+  </section>
+</section>
+{% endblock %}

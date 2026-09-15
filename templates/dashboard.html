@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block body_class %}app-body dashboard-body{% endblock %}
+{% block content %}
+<section class="dashboard-shell">
+  <div class="dashboard-hero">
+    <div class="hero-overlay-content">
+      <span class="eyebrow light">STUDENT DASHBOARD</span>
+      <h1>Good to see you,<br><em>{{ user['name'].split()[0] }}</em>!</h1>
+      <p>Your learning journey, beautifully organized.</p>
+    </div>
+    <div class="hero-search">⌕ <span>Search topics, resources, or anything...</span></div>
+    <div class="hero-quote">“Small Steps<br>Big Changes”</div>
+  </div>
+
+  <div class="dashboard-content">
+    <div class="welcome-strip reveal">
+      <div>
+        <span class="eyebrow">YOUR LIVE LEARNING SPACE</span>
+        <h2>Everything here responds to <em>your data</em>.</h2>
+        <p>Add or update an assessment and the progress, weak topics, strengths and recommendations recalculate automatically.</p>
+      </div>
+      <a class="premium-button" href="{{ url_for('assessments') }}">+ Add Assessment <span>→</span></a>
+    </div>
+
+    <div class="metric-grid reveal">
+      <article class="metric-card progress-card">
+        <div class="metric-label">OVERALL PROGRESS <span>↗</span></div>
+        <div class="ring" style="--progress: {{ metrics.overall }}%;">
+          <div><strong>{{ metrics.overall|round(1) }}%</strong><small>overall</small></div>
+        </div>
+        <p>{% if metrics.assessments %}Based on {{ metrics.assessments|length }} assessment{{ 's' if metrics.assessments|length != 1 else '' }}{% else %}Add your first assessment to begin{% endif %}</p>
+      </article>
+      <article class="metric-card">
+        <div class="metric-icon">▣</div>
+        <div class="metric-label">ASSESSMENTS</div>
+        <strong class="metric-number">{{ metrics.assessments|length }}</strong>
+        <small>{{ 'Latest: ' ~ metrics.latest.taken_display if metrics.latest else 'No results recorded yet' }}</small>
+      </article>
+      <article class="metric-card alert-card">
+        <div class="metric-icon">◎</div>
+        <div class="metric-label">FOCUS AREAS</div>
+        <strong class="metric-number">{{ metrics.weak|length }}</strong>
+        <small>{{ 'Need attention below ' ~ weak_threshold ~ '%' if metrics.weak else 'No weak topics yet' }}</small>
+      </article>
+      <article class="metric-card gold-card">
+        <div class="metric-icon">♜</div>
+        <div class="metric-label">STRENGTHS</div>
+        <strong class="metric-number">{{ metrics.strengths|length }}</strong>
+        <small>{{ 'Topics at ' ~ strength_threshold ~ '% or above' if metrics.strengths else 'Strengths appear at ' ~ strength_threshold ~ '%' }}</small>
+      </article>
+      <a class="metric-card add-card" href="{{ url_for('assessments') }}">
+        <div class="add-symbol">+</div>
+        <div><strong>Add Assessment</strong><small>Take a result and track your progress</small></div>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="content-grid">
+      <section class="glass-panel reveal">
+        <div class="panel-heading">
+          <div><span class="eyebrow">SUBJECT PERFORMANCE</span><h2>Where you stand</h2></div>
+          <a href="{{ url_for('performance') }}">View Details →</a>
+        </div>
+        {% if metrics.subject_items %}
+          <div class="subject-list premium-subjects">
+          {% for s in metrics.subject_items %}
+            <div class="subject-line">
+              <div class="subject-name"><span class="subject-dot">{{ loop.index }}</span><b>{{ s.name }}</b><strong>{{ s.average }}%</strong></div>
+              <div class="progress-track"><i style="width:{{ [s.average,100]|min }}%"></i></div>
+            </div>
+          {% endfor %}
+          </div>
+        {% else %}
+          <div class="empty-feature">
+            <span class="empty-icon">◫</span>
+            <h3>Your subject map starts here.</h3>
+            <p>Once you enter an assessment, each subject you use will appear here with its live average.</p>
+            <a href="{{ url_for('assessments') }}" class="text-link">Add your first result →</a>
+          </div>
+        {% endif %}
+      </section>
+
+      <section class="glass-panel reveal">
+        <div class="panel-heading">
+          <div><span class="eyebrow">FOCUS AREAS</span><h2>Topics to revisit</h2></div>
+          <a href="{{ url_for('weak_topics') }}">Explore All →</a>
+        </div>
+        {% if metrics.weak %}
+          <div class="focus-list">
+          {% for x in metrics.weak[:5] %}
+            <a href="{{ url_for('resources', topic=x.topic) }}" class="focus-item">
+              <span class="focus-mark">!</span>
+              <div><b>{{ x.topic }}</b><small>{{ x.subject }}</small></div>
+              <span class="focus-score">{{ x.percentage }}%</span><span class="chevron">›</span>
+            </a>
+          {% endfor %}
+          </div>
+        {% else %}
+          <div class="empty-feature compact">
+            <span class="empty-icon">◎</span>
+            <h3>No focus area yet.</h3>
+            <p>Weak topics appear automatically when your topic average falls below {{ weak_threshold }}%.</p>
+          </div>
+        {% endif %}
+      </section>
+
+      <section class="glass-panel motivation-card reveal">
+        <span class="eyebrow">TODAY'S MOTIVATION</span>
+        <h2>“Discipline today creates the success you'll be proud of tomorrow.”</h2>
+        <span class="gold-line"></span>
+        <p>Keep your next step small, specific and consistent.</p>
+      </section>
+
+      <section class="glass-panel streak-card reveal">
+        <div class="panel-heading"><div><span class="eyebrow">LEARNING ACTIVITY</span><h2>{{ metrics.streak }} day{{ 's' if metrics.streak != 1 else '' }}</h2></div><span class="fire">✦</span></div>
+        <p>{% if metrics.assessments %}Consecutive assessment activity days{% else %}Your activity will appear after you add results{% endif %}</p>
+        <div class="activity-dots">
+          {% for n in range(7) %}<span class="{% if n < metrics.streak and metrics.streak > 0 %}filled{% endif %}"></span>{% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <section class="glass-panel resources-panel reveal">
+      <div class="panel-heading">
+        <div><span class="eyebrow">PERSONALIZED RESOURCES</span><h2>Recommended for you</h2><p>Recommendations are generated from your live weak-topic data.</p></div>
+        <a href="{{ url_for('resources') }}">View Library →</a>
+      </div>
+      {% if metrics.recommendations %}
+      <div class="resource-cards">
+        {% for r in metrics.recommendations[:4] %}
+        <a href="{{ url_for('resource_detail', resource_id=r['id']) }}" class="resource-card-premium">
+          <span class="resource-icon {{ r['category'] }}">{{ '▶' if r['category']=='video' else '▤' if r['category']=='notes' else '✓' if r['category']=='quiz' else '✦' }}</span>
+          <span class="resource-type">{{ r['category']|upper }}</span>
+          <h3>{{ r['title'] }}</h3>
+          <p>{{ r['description'] }}</p>
+          <small>{{ r['subject'] }} · {{ r['topic'] }}</small>
+        </a>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="resource-empty">
+        <div class="resource-empty-art">✦</div>
+        <div><h3>No personalized recommendations yet.</h3><p>They will appear automatically after a topic falls below {{ weak_threshold }}%.</p></div>
+        <a class="outline-button" href="{{ url_for('resources') }}">Browse Library →</a>
+      </div>
+      {% endif %}
+    </section>
+
+    <aside class="next-step-card reveal">
+      <span class="eyebrow">NEXT STEP</span>
+      {% if metrics.weak %}
+        <h2>Strengthen {{ metrics.weak[0].topic }}</h2>
+        <p>Based on your current topic average of {{ metrics.weak[0].percentage }}%, this is the most important area to revisit next.</p>
+        <a href="{{ url_for('resources', topic=metrics.weak[0].topic) }}">Start Learning →</a>
+      {% elif metrics.assessments %}
+        <h2>Keep your momentum</h2>
+        <p>Your current data does not show a weak topic. Add another assessment to keep the picture fresh.</p>
+        <a href="{{ url_for('assessments') }}">Add Assessment →</a>
+      {% else %}
+        <h2>Take your first step</h2>
+        <p>Add your first assessment and Learn4All will build your personalized progress picture from your own data.</p>
+        <a href="{{ url_for('assessments') }}">Add Assessment →</a>
+      {% endif %}
+    </aside>
+  </div>
+</section>
+{% endblock %}

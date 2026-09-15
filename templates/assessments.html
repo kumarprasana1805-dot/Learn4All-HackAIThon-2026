@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Assessments{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell">
+  <div class="page-hero reveal">
+    <div><span class="eyebrow light">ASSESSMENTS</span><h1>Turn results into <em>direction</em>.</h1><p>Enter your real result. Learn4All recalculates the dashboard, performance, weak topics and recommendations from it.</p></div>
+    <div class="hero-stat"><strong>{{ metrics.assessments|length }}</strong><span>Results recorded</span></div>
+  </div>
+  <div class="inner-grid assessment-layout">
+    <section class="glass-panel form-panel reveal">
+      <span class="eyebrow">NEW RESULT</span><h2>Add an assessment</h2><p class="panel-copy">No sample marks are preloaded. This is your data entry point.</p>
+      <form method="post" class="premium-form">
+        <label>Subject<input name="subject" placeholder="e.g. Physics" required></label>
+        <label>Topic<input name="topic" placeholder="e.g. Thermodynamics" required></label>
+        <div class="form-two"><label>Score<input type="number" name="score" min="0" step="0.1" placeholder="72" required></label><label>Maximum Score<input type="number" name="max_score" min="1" step="0.1" value="100" required></label></div>
+        <button class="premium-button" type="submit">Save Assessment <span>→</span></button>
+      </form>
+    </section>
+    <section class="glass-panel reveal">
+      <div class="panel-heading"><div><span class="eyebrow">LIVE IMPACT</span><h2>What changes after saving</h2></div></div>
+      <div class="impact-steps"><div><b>01</b><span>Your score becomes a percentage.</span></div><div><b>02</b><span>Subject and topic averages recalculate.</span></div><div><b>03</b><span>Weak topics and strengths update.</span></div><div><b>04</b><span>Matching resources become recommendations.</span></div></div>
+    </section>
+  </div>
+  <section class="glass-panel reveal">
+    <div class="panel-heading"><div><span class="eyebrow">HISTORY</span><h2>Your real assessments</h2></div></div>
+    {% if metrics.assessments %}
+      <div class="assessment-list">
+      {% for a in metrics.assessments %}
+        <div class="assessment-item"><div class="assessment-index">{{ loop.index }}</div><div class="assessment-main"><b>{{ a.subject }}</b><strong>{{ a.topic }}</strong><small>{{ a.taken_display }}</small></div><div class="assessment-score {% if a.percentage < weak_threshold %}danger{% elif a.percentage >= strength_threshold %}good{% endif %}">{{ a.percentage }}%</div><div class="assessment-raw">{{ a.score }}/{{ a.max_score }}</div></div>
+      {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-feature"><span class="empty-icon">▣</span><h3>Your history is empty.</h3><p>Add a real assessment above. Nothing is pre-filled.</p></div>
+    {% endif %}
+  </section>
+</section>
+{% endblock %}

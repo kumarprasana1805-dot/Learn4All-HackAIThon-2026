@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block body_class %}welcome-body{% endblock %}
+{% block content %}
+<section class="welcome-screen" data-auto-redirect="{{ url_for('dashboard') }}">
+  <div class="welcome-orb"></div>
+  <div class="welcome-card reveal">
+    <span class="eyebrow">WELCOME TO LEARN4ALL</span>
+    <div class="welcome-monogram">{{ user['name'][0]|upper }}</div>
+    <h1>Good to have you, <em>{{ user['name'].split()[0] }}</em>.</h1>
+    <p>Your learning space is ready. Add your first assessment whenever you are ready to begin.</p>
+    <div class="welcome-line"><span></span><b>Learn · Grow · Belong</b><span></span></div>
+  </div>
+</section>
+{% endblock %}

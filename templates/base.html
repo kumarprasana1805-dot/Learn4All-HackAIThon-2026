@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Learn4All{% endblock %} · Learn4All</title>
+  <meta name="description" content="Learn4All — inclusive learning progress and resource planner">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') + '?v=20260915-v14' }}">
+  <script defer src="{{ url_for('static', filename='js/app.js') + '?v=20260915-v14' }}"></script>
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  {% if g.user %}
+  <header class="app-header">
+    <a class="app-brand" href="{{ url_for('dashboard') }}">
+      <span class="brand-emblem">L<span>4</span>A</span>
+      <span>
+        <strong>Learn<span>4</span>All</strong>
+        <small>Learn Today · Grow Tomorrow</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {% if g.user['role'] == 'student' %}
+        <a class="{% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">⌂ <span>Dashboard</span></a>
+        <a class="{% if request.endpoint == 'performance' %}active{% endif %}" href="{{ url_for('performance') }}">◫ <span>Performance</span></a>
+        <a class="{% if request.endpoint == 'assessments' %}active{% endif %}" href="{{ url_for('assessments') }}">▣ <span>Assessments</span></a>
+        <a class="{% if request.endpoint == 'weak_topics' %}active{% endif %}" href="{{ url_for('weak_topics') }}">◎ <span>Weak Topics</span></a>
+        <a class="{% if request.endpoint == 'resources' %}active{% endif %}" href="{{ url_for('resources') }}">▤ <span>Resources</span></a>
+        <a class="{% if request.endpoint == 'report' %}active{% endif %}" href="{{ url_for('report') }}">▥ <span>Report</span></a>
+      {% else %}
+        <a class="{% if request.endpoint == 'teacher_dashboard' %}active{% endif %}" href="{{ url_for('teacher_dashboard') }}">⌂ <span>Teacher Dashboard</span></a>
+      {% endif %}
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-icon" href="{{ url_for('settings') }}" title="Settings" aria-label="Settings">⚙</a>
+      <a class="header-avatar" href="{{ url_for('profile') }}" title="Profile">{{ g.user['name'][0]|upper }}</a>
+      <div class="header-user">
+        <strong>{{ g.user['name'].split()[0] }}</strong>
+        <small>{{ g.user['role']|capitalize }}</small>
+      </div>
+      <a class="logout-pill" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </header>
+  {% else %}
+  <header class="public-header">
+    <a class="app-brand" href="{{ url_for('login') }}">
+      <span class="brand-emblem">L<span>4</span>A</span>
+      <span>
+        <strong>Learn<span>4</span>All</strong>
+        <small>Learn Today · Grow Tomorrow</small>
+      </span>
+    </a>
+    <nav class="public-nav">
+      <a class="{% if request.endpoint == 'login' %}active{% endif %}" href="{{ url_for('login') }}">Home</a>
+      <a class="{% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">About</a>
+      <a class="{% if request.endpoint == 'impact' %}active{% endif %}" href="{{ url_for('impact') }}">Impact</a>
+      <a class="{% if request.endpoint == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+    <div class="public-actions">
+      <a href="{{ url_for('login') }}">Login</a>
+      <a class="small-gold-button" href="{{ url_for('signup') }}">Sign Up</a>
+    </div>
+  </header>
+  {% endif %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-stack">
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <footer class="site-footer">
+    <span>© 2026 Learn4All</span>
+    <span>SDG 4 · Quality Education</span>
+    <span>SDG 10 · Reduced Inequalities</span>
+    <span>Learn · Grow · Belong</span>
+  </footer>
+</body>
+</html>

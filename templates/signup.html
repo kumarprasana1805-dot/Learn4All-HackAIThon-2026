@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Create Account{% endblock %}
+{% block body_class %}auth-form-body{% endblock %}
+{% block content %}
+<section class="auth-surface">
+  <div class="auth-visual">
+    <span class="eyebrow">JOIN LEARN4ALL</span>
+    <h1>Build a learning journey that is <em>yours</em>.</h1>
+    <p>Create your account and let every assessment shape the progress view you see next.</p>
+    <div class="visual-points">
+      <span>01 · Track</span><span>02 · Understand</span><span>03 · Improve</span>
+    </div>
+  </div>
+  <div class="auth-card">
+    <a class="back-link" href="{{ url_for('login') }}">← Back to login</a>
+    <span class="eyebrow">CREATE ACCOUNT</span>
+    <h2>Welcome to <em>Learn4All</em></h2>
+    <p class="muted-copy">Your dashboard starts empty on purpose — your own results will build it.</p>
+    <form method="post" class="premium-form">
+      <label>Full Name<input name="name" value="{{ request.form.get('name','') }}" placeholder="Your name" required></label>
+      <label>Email Address<input type="email" name="email" value="{{ request.form.get('email','') }}" placeholder="you@example.com" required></label>
+      <label>Password<input type="password" name="password" placeholder="At least 8 characters" required></label>
+      <label>Accessibility Needs <small>(optional)</small><input name="accessibility_needs" value="{{ request.form.get('accessibility_needs','') }}" placeholder="e.g. captions, screen reader"></label>
+      <button class="premium-button" type="submit">Create My Account <span>→</span></button>
+    </form>
+    <p class="auth-switch">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+  </div>
+</section>
+{% endblock %}

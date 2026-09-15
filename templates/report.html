@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Learner Report{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell">
+  <div class="report-cover reveal"><div><span class="eyebrow light">INDIVIDUAL LEARNER REPORT</span><h1>{{ user['name'] }}<br><em>Progress Report</em></h1><p>Generated directly from your recorded assessments.</p></div><div class="report-seal"><strong>{{ metrics.overall }}%</strong><span>Overall Average</span></div></div>
+  <div class="report-grid-premium">
+    <section class="glass-panel reveal"><span class="eyebrow">SUBJECT PERFORMANCE</span><h2>Your academic picture</h2>{% if metrics.subject_items %}{% for s in metrics.subject_items %}<div class="large-bar-row"><div><b>{{ s.name }}</b><strong>{{ s.average }}%</strong></div><div class="progress-track tall"><i style="width:{{ [s.average,100]|min }}%"></i></div></div>{% endfor %}{% else %}<div class="empty-feature compact"><p>No subject data yet.</p></div>{% endif %}</section>
+    <section class="glass-panel reveal"><span class="eyebrow">STRENGTHS</span><h2>What is going well</h2>{% if metrics.strengths %}<div class="tag-cloud">{% for x in metrics.strengths %}<span class="tag gold">{{ x.topic }} · {{ x.percentage }}%</span>{% endfor %}</div>{% else %}<p class="big-empty-copy">Strengths will appear automatically when a topic reaches {{ strength_threshold }}%.</p>{% endif %}</section>
+    <section class="glass-panel reveal"><span class="eyebrow">WEAK TOPICS</span><h2>Where to focus</h2>{% if metrics.weak %}<div class="tag-cloud">{% for x in metrics.weak %}<a href="{{ url_for('resources', topic=x.topic) }}" class="tag red">{{ x.topic }} · {{ x.percentage }}%</a>{% endfor %}</div>{% else %}<p class="big-empty-copy">No current focus areas.</p>{% endif %}</section>
+    <section class="glass-panel reveal"><span class="eyebrow">NEXT ACTIONS</span><h2>Recommended next steps</h2><ul class="action-list">{% if metrics.weak %}{% for x in metrics.weak %}<li>Revisit <strong>{{ x.topic }}</strong> using targeted resources, then reassess.</li>{% endfor %}{% else %}<li>{% if metrics.assessments %}Continue regular assessment and revision to keep your data current.{% else %}Add your first assessment so Learn4All can generate personalized next actions.{% endif %}</li>{% endif %}</ul></section>
+  </div>
+  <section class="glass-panel reveal"><div class="panel-heading"><div><span class="eyebrow">REPORT DATA</span><h2>Recorded results</h2></div><a href="{{ url_for('assessments') }}">Update Data →</a></div>{% if metrics.assessments %}<div class="table-premium"><div class="table-head"><span>Subject</span><span>Topic</span><span>Result</span><span>Date</span></div>{% for a in metrics.assessments %}<div class="table-row"><span>{{ a.subject }}</span><span>{{ a.topic }}</span><span class="score-pill {% if a.percentage < weak_threshold %}red{% elif a.percentage >= strength_threshold %}gold{% endif %}">{{ a.percentage }}%</span><span>{{ a.taken_display }}</span></div>{% endfor %}</div>{% else %}<div class="empty-feature compact"><p>No recorded results yet.</p></div>{% endif %}</section>
+</section>
+{% endblock %}

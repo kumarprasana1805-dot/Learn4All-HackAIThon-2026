@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ page|capitalize }}{% endblock %}
+{% block body_class %}public-body{% endblock %}
+{% block content %}
+<section class="public-page-shell">
+  {% if page == 'about' %}
+    <div class="public-hero reveal"><span class="eyebrow light">ABOUT LEARN4ALL</span><h1>Education should reveal <em>possibility</em>, not limits.</h1><p>Learn4All is a Python-based inclusive learning progress and resource planner designed to turn real assessment data into clear next actions.</p></div>
+    <div class="public-grid">
+      <article class="story-card reveal"><span class="eyebrow">THE IDEA</span><h2>From marks to meaning.</h2><p>Students enter their own assessment results. The system calculates performance by subject and topic, identifies gaps and surfaces matching learning resources.</p></article>
+      <article class="story-card reveal"><span class="eyebrow">THE APPROACH</span><h2>Personalized, not pre-filled.</h2><p>A new student starts with an intentionally empty learning dashboard. The interface changes as their real data changes, so the story belongs to the learner.</p></article>
+      <article class="story-card reveal wide"><span class="eyebrow">INCLUSIVE DESIGN</span><h2>One platform, different learning needs.</h2><p>Accessibility preferences can be saved to the learner profile. When recommendations are generated, accessible resources are prioritized when available.</p></article>
+    </div>
+  {% elif page == 'impact' %}
+    <div class="public-hero reveal"><span class="eyebrow light">IMPACT · SDG 4 · SDG 10</span><h1>Make the next learning step <em>visible</em>.</h1><p>Learn4All connects assessment, diagnosis and resources in one feedback loop so learners can understand where to focus.</p></div>
+    <div class="impact-grid">
+      <article class="impact-card reveal"><strong>01</strong><span>TRACK</span><h2>Real progress</h2><p>Record marks and keep a clear history of results rather than relying on memory.</p></article>
+      <article class="impact-card reveal"><strong>02</strong><span>DIAGNOSE</span><h2>Weak topics</h2><p>Topic averages below {{ weak_threshold }}% are surfaced as focus areas.</p></article>
+      <article class="impact-card reveal"><strong>03</strong><span>RECOMMEND</span><h2>Targeted resources</h2><p>Video, notes, quiz and practice resources are matched to the topic that needs attention.</p></article>
+      <article class="impact-card reveal"><strong>04</strong><span>REFLECT</span><h2>Individual report</h2><p>Strengths, gaps and next actions are assembled into a learner report from the same live data.</p></article>
+    </div>
+  {% elif page == 'contact' %}
+    <div class="public-hero reveal"><span class="eyebrow light">CONTACT</span><h1>Let's keep the <em>conversation</em> open.</h1><p>Have a question about the prototype, accessibility or the learning workflow? Send a message.</p></div>
+    <div class="contact-layout">
+      <section class="story-card reveal"><span class="eyebrow">LEARN4ALL</span><h2>Need help?</h2><p>Use the form to send a message. For the competition prototype, messages are stored locally in the SQLite database.</p><div class="contact-detail"><span>✦</span><div><b>Inclusive Education</b><small>SDG 4 · Quality Education</small></div></div><div class="contact-detail"><span>◎</span><div><b>Reduced Inequalities</b><small>SDG 10 · Equal opportunity</small></div></div></section>
+      <section class="story-card reveal"><span class="eyebrow">SEND A MESSAGE</span><h2>Tell us what you need.</h2><form method="post" class="premium-form"><label>Name<input name="name" placeholder="Your name" required></label><label>Email<input type="email" name="email" placeholder="you@example.com" required></label><label>Message<textarea name="message" rows="5" placeholder="How can we help?" required></textarea></label><button class="premium-button" type="submit">Send Message <span>→</span></button></form></section>
+    </div>
+  {% else %}
+    <div class="public-hero reveal"><span class="eyebrow light">HELP & SUPPORT</span><h1>Find your next answer <em>quickly</em>.</h1><p>A calm, simple guide for using the Learn4All prototype.</p></div>
+    <div class="faq-grid">
+      <article class="story-card reveal"><span class="eyebrow">01</span><h2>Why is my dashboard empty?</h2><p>That is intentional. Student metrics are not pre-filled. Add your own assessment to generate the data.</p></article>
+      <article class="story-card reveal"><span class="eyebrow">02</span><h2>When do weak topics appear?</h2><p>When the average for a subject-topic combination falls below {{ weak_threshold }}%.</p></article>
+      <article class="story-card reveal"><span class="eyebrow">03</span><h2>How do recommendations work?</h2><p>They use the exact weak topic and prioritize accessible resources when accessibility needs are saved.</p></article>
+      <article class="story-card reveal"><span class="eyebrow">04</span><h2>Need something else?</h2><p>Use Contact to send a message through the prototype.</p><a href="{{ url_for('contact') }}" class="premium-button">Contact Learn4All →</a></article>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

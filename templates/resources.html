@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Resources{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell">
+  <div class="page-hero resource-hero reveal">
+    <div><span class="eyebrow light">RESOURCE LIBRARY</span><h1>Learn in the way that <em>fits you</em>.</h1><p>Open a resource to study, practise, take a quiz, or work through a focused lesson. Recommendations are driven by your learning data.</p></div>
+    <div class="hero-stat"><strong>{{ resources|length }}</strong><span>Matching resources</span></div>
+  </div>
+  <form class="filter-panel reveal" method="get">
+    <div><span class="eyebrow">FILTER LIBRARY</span><h2>Find what you need</h2></div>
+    <select name="subject"><option value="">All subjects</option>{% for s in subjects %}<option value="{{ s }}" {% if selected_subject==s %}selected{% endif %}>{{ s }}</option>{% endfor %}</select>
+    <select name="category"><option value="">All types</option>{% for c in categories %}<option value="{{ c }}" {% if selected_category==c %}selected{% endif %}>{{ c|capitalize }}</option>{% endfor %}</select>
+    <input name="topic" value="{{ selected_topic }}" placeholder="Topic e.g. Geometry">
+    <button class="premium-button" type="submit">Filter →</button>
+  </form>
+  <div class="resource-grid-premium">
+  {% for r in resources %}
+    <a href="{{ url_for('resource_detail', resource_id=r['id']) }}" class="library-card reveal resource-card-link">
+      <div class="library-top"><span class="resource-icon {{ r.category }}">{{ '▶' if r.category=='video' else '▤' if r.category=='notes' else '✓' if r.category=='quiz' else '✦' }}</span><span class="resource-type">{{ r.category|upper }}</span>{% if r.accessible %}<span class="accessibility">Accessible</span>{% endif %}</div>
+      <span class="eyebrow">{{ r.subject }}</span><h2>{{ r.title }}</h2><p>{{ r.description }}</p>
+      <div class="library-meta"><span>{{ r.topic }}</span><span class="resource-open">Open {{ r.category|capitalize }} →</span></div>
+    </a>
+  {% else %}
+    <div class="empty-spotlight"><div class="spotlight-mark">⌕</div><h2>No resources match.</h2><p>Try a broader subject, category or topic.</p><a href="{{ url_for('resources') }}" class="premium-button">Clear Filters →</a></div>
+  {% endfor %}
+  </div>
+</section>
+{% endblock %}

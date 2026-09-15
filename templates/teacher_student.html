@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ student['name'] }} · Teacher View{% endblock %}
+{% block body_class %}app-body inner-body{% endblock %}
+{% block content %}
+<section class="inner-shell">
+  <div class="page-hero reveal"><div><a class="back-link light-link" href="{{ url_for('teacher_dashboard') }}">← Teacher Dashboard</a><span class="eyebrow light">INDIVIDUAL LEARNER</span><h1>{{ student['name'] }}'s <em>progress</em>.</h1><p>{{ student['email'] }}</p></div><div class="report-seal"><strong>{{ metrics.overall }}%</strong><span>Overall average</span></div></div>
+  <div class="metric-grid reveal"><article class="metric-card"><span class="metric-label">ASSESSMENTS</span><strong class="metric-number">{{ metrics.assessments|length }}</strong><small>Recorded results</small></article><article class="metric-card alert-card"><span class="metric-label">WEAK TOPICS</span><strong class="metric-number">{{ metrics.weak|length }}</strong><small>Below {{ weak_threshold }}%</small></article><article class="metric-card gold-card"><span class="metric-label">STRENGTHS</span><strong class="metric-number">{{ metrics.strengths|length }}</strong><small>At least {{ strength_threshold }}%</small></article></div>
+  <div class="inner-grid">
+    <section class="glass-panel reveal"><span class="eyebrow">SUBJECT PERFORMANCE</span><h2>Performance by subject</h2>{% if metrics.subject_items %}{% for s in metrics.subject_items %}<div class="large-bar-row"><div><b>{{ s.name }}</b><strong>{{ s.average }}%</strong></div><div class="progress-track tall"><i style="width:{{ [s.average,100]|min }}%"></i></div></div>{% endfor %}{% else %}<div class="empty-feature compact"><p>No assessment data for this learner.</p></div>{% endif %}</section>
+    <section class="glass-panel reveal"><span class="eyebrow">FOCUS AREAS</span><h2>Topics needing attention</h2>{% if metrics.weak %}<div class="tag-cloud">{% for x in metrics.weak %}<span class="tag red">{{ x.topic }} · {{ x.percentage }}%</span>{% endfor %}</div>{% else %}<p class="big-empty-copy">No current weak topics.</p>{% endif %}</section>
+  </div>
+  <section class="glass-panel reveal"><div class="panel-heading"><div><span class="eyebrow">ASSESSMENTS</span><h2>Recorded results</h2></div></div>{% if metrics.assessments %}<div class="table-premium"><div class="table-head"><span>Subject</span><span>Topic</span><span>Result</span><span>Date</span></div>{% for a in metrics.assessments %}<div class="table-row"><span>{{ a.subject }}</span><span>{{ a.topic }}</span><span class="score-pill {% if a.percentage < weak_threshold %}red{% elif a.percentage >= strength_threshold %}gold{% endif %}">{{ a.percentage }}%</span><span>{{ a.taken_display }}</span></div>{% endfor %}</div>{% else %}<div class="empty-feature compact"><p>No recorded assessments.</p></div>{% endif %}</section>
+</section>
+{% endblock %}

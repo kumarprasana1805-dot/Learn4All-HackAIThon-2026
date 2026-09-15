@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block body_class %}app-body inner-body teacher-body{% endblock %}
+{% block content %}
+<section class="inner-shell">
+  <div class="page-hero teacher-hero reveal"><div><span class="eyebrow light">TEACHER DASHBOARD</span><h1>See the class, <em>clearly</em>.</h1><p>Class-level insights are calculated from the registered students' real assessment data.</p></div><div class="hero-stat"><strong>{{ students|length }}</strong><span>Student accounts</span></div></div>
+  <div class="metric-grid teacher-metrics reveal">
+    <article class="metric-card"><span class="metric-label">CLASS AVERAGE</span><strong class="metric-number">{{ class_avg }}%</strong><small>{% if total_assessments %}Across recorded assessments{% else %}No assessments recorded yet{% endif %}</small></article>
+    <article class="metric-card"><span class="metric-label">STUDENTS</span><strong class="metric-number">{{ students|length }}</strong><small>Registered learners</small></article>
+    <article class="metric-card alert-card"><span class="metric-label">STUDENTS WITH GAPS</span><strong class="metric-number">{{ students|selectattr('weak','gt',0)|list|length }}</strong><small>At least one weak topic</small></article>
+    <article class="metric-card gold-card"><span class="metric-label">SHARED GAP</span><strong class="metric-number small-number">{{ common_weak[0][0] if common_weak else '—' }}</strong><small>{{ common_weak[0][1] if common_weak else 0 }} learner{{ 's' if (common_weak and common_weak[0][1] != 1) else '' }}</small></article>
+  </div>
+  <div class="content-grid teacher-content">
+    <section class="glass-panel reveal"><div class="panel-heading"><div><span class="eyebrow">CLASS SUMMARY</span><h2>Common weak topics</h2></div></div>{% if common_weak %}<div class="rank-list-premium">{% for topic,count in common_weak[:8] %}<div><span>{{ '%02d' % loop.index }}</span><b>{{ topic }}</b><strong>{{ count }} learner{{ 's' if count != 1 else '' }}</strong></div>{% endfor %}</div>{% else %}<div class="empty-feature compact"><h3>No class gap data yet.</h3><p>Students' real assessments will populate this automatically.</p></div>{% endif %}</section>
+    <section class="glass-panel reveal motivation-card"><span class="eyebrow">CLASS INSIGHT</span><h2>“Every learner can progress when the next step is visible.”</h2><span class="gold-line"></span><p>Use shared weak topics for class-level follow-up, then open an individual learner for targeted detail.</p></section>
+  </div>
+  <section class="glass-panel reveal"><div class="panel-heading"><div><span class="eyebrow">LEARNERS</span><h2>Student progress</h2></div></div>{% if students %}<div class="student-list-premium">{% for s in students %}<a class="student-row-premium" href="{{ url_for('teacher_student', student_id=s.id) }}"><span class="profile-avatar">{{ s.name[0]|upper }}</span><span class="student-main"><b>{{ s.name }}</b><small>{{ s.email }}</small></span><span class="student-number"><b>{{ s.overall }}%</b><small>average</small></span><span class="student-number danger-text"><b>{{ s.weak }}</b><small>weak</small></span><span class="student-number gold-text"><b>{{ s.strengths }}</b><small>strong</small></span><span>→</span></a>{% endfor %}</div>{% else %}<div class="empty-feature"><span class="empty-icon">♙</span><h3>No student accounts yet.</h3><p>Student signups will appear here automatically. No learner data is preloaded.</p></div>{% endif %}</section>
+</section>
+{% endblock %}
