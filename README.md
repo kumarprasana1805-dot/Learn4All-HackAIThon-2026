@@ -1,52 +1,201 @@
 <div align="center">
 
+<img src="static/images/learn4all-login-art-hq.jpg" alt="Learn4All — VidyaPath" width="100%"/>
+
 # ✦ LEARN4ALL — VIDYAPATH ✦
-### **Personalized Learning • Performance Intelligence • Actionable Resources**
+### **From Assessment Data to the Next Best Learning Action**
 
-**Team VidyaNova**  
-*HACK-AI-THON 2026 · National Level*
-
-<img src="static/images/learn4all-login-art-hq.jpg" alt="Learn4All premium interface" width="900"/>
+**Team VidyaNova** · **HACK-AI-THON 2026 · National Level**
 
 <br/>
 
-### **Learn Today · Understand Better · Grow Tomorrow**
-
-<p>
 <a href="https://github.com/kumarprasana1805-dot/Learn4All-HackAIThon-2026">
-<img src="https://img.shields.io/badge/Repository-GitHub-181717?style=for-the-badge&logo=github" alt="GitHub Repository"/>
+<img src="https://img.shields.io/badge/VIEW%20SOURCE%20CODE-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="View source code"/>
 </a>
 <img src="https://img.shields.io/badge/Python-OOP-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python OOP"/>
-<img src="https://img.shields.io/badge/Flask-Web_App-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
-<img src="https://img.shields.io/badge/SQLite-Persistence-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
-<img src="https://img.shields.io/badge/SDG_4-Quality_Education-B8860B?style=for-the-badge" alt="SDG 4"/>
-</p>
+<img src="https://img.shields.io/badge/Flask-Web%20Application-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
+<img src="https://img.shields.io/badge/SQLite-Data%20Persistence-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+<img src="https://img.shields.io/badge/SDG%204-Quality%20Education-B8860B?style=for-the-badge" alt="SDG 4"/>
+
+<br/><br/>
+
+> ## **Learn Today · Understand Better · Grow Tomorrow**
 
 </div>
 
 ---
 
-## 🏆 Project at a Glance
+# 🚀 How to Use Learn4All
 
-| | |
-|---|---|
-| **Project** | Learn4All — VidyaPath |
-| **Challenge** | Learn4All – Inclusive Learning Progress & Resource Planner |
-| **Competition** | HACK-AI-THON 2026 · National Level |
-| **Theme** | Python Fundamentals + OOP + SDGs |
-| **Primary Language** | Python |
-| **Web Framework** | Flask |
-| **Database** | SQLite |
-| **Core Approach** | OOP + Performance Analysis + Resource Recommendation |
-| **Primary SDG** | SDG 4 — Quality Education |
-| **Additional SDG** | SDG 10 — Reduced Inequalities |
-| **Team** | Team VidyaNova |
+> **Start here.** This section is intentionally placed near the top so a teacher/evaluator can run the project immediately without searching through the documentation.
+
+## 1. Requirements
+
+You need:
+
+- **Python 3.x**
+- A modern web browser
+- Internet access for installing Python dependencies
+- Network access when using dynamic external-source topic retrieval
 
 ---
 
-# 🎯 What is Learn4All?
+## 2. Download / Clone the Project
 
-**Learn4All — VidyaPath** is a Python-based learning support platform that turns assessment results into **personalized learning actions**.
+### Option A — Clone from GitHub
+
+```bash
+git clone https://github.com/kumarprasana1805-dot/Learn4All-HackAIThon-2026.git
+cd Learn4All-HackAIThon-2026
+```
+
+### Option B — Download ZIP
+
+Download the repository from GitHub, extract it, and open a terminal inside the extracted project folder.
+
+---
+
+## 3. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+---
+
+## 4. Activate the Environment
+
+### Windows PowerShell
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### Windows Command Prompt
+
+```bat
+.venv\Scripts\activate
+```
+
+---
+
+## 5. Install Dependencies
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+---
+
+## 6. Start Learn4All
+
+```bash
+python app.py
+```
+
+When Flask starts successfully, open:
+
+**http://127.0.0.1:5000**
+
+---
+
+## 7. What to Demonstrate
+
+### 👨‍🎓 Student Demo
+
+```text
+Login / Signup
+      ↓
+Welcome
+      ↓
+Student Dashboard
+      ↓
+Add / View Assessments
+      ↓
+Performance Analysis
+      ↓
+Weak Topics & Strengths
+      ↓
+Recommended Resources
+      ↓
+Notes / Video / Quiz / Practice
+      ↓
+Individual Learner Report
+```
+
+### 👩‍🏫 Teacher Demo
+
+Use the authorized teacher account:
+
+```text
+Email:    teacher@learn4all.in
+Password: Teacher@123
+```
+
+Then demonstrate:
+
+```text
+Teacher Login
+      ↓
+Teacher Dashboard
+      ↓
+Class-Level Summary
+      ↓
+Student Progress
+      ↓
+Individual Student Analysis
+      ↓
+Common Weak Topics / Improvement
+```
+
+> **Important:** teacher access is protected by backend role authorization, not simply by hiding teacher buttons in the UI.
+
+---
+
+## 8. Quick Demo Path
+
+For a short competition demonstration, follow this order:
+
+**1. Login → 2. Dashboard → 3. Assessment → 4. Performance → 5. Weak Topic → 6. Recommended Resource → 7. Learner Report → 8. Teacher Dashboard**
+
+This sequence shows the complete **data → analysis → recommendation → action** pipeline.
+
+---
+
+# 🧭 Quick Navigation
+
+| Section | Purpose |
+|---|---|
+| 🚀 **How to Use** | Run and demonstrate the project |
+| 🎯 **Project Overview** | Understand Learn4All |
+| 🚨 **Problem Statement** | Understand the real-world problem |
+| 💡 **Solution** | See how the problem is addressed |
+| 🌍 **SDG Alignment** | See sustainability relevance |
+| ✨ **Features** | Explore student/teacher capabilities |
+| ⚙️ **How It Works** | Understand the complete workflow |
+| 🧠 **Recommendation Engine** | Understand personalization |
+| 🏗️ **OOP & Architecture** | Understand Python/OOP implementation |
+| 💻 **Code Highlights** | See core implementation logic |
+| 🖥️ **Interface & Design** | Understand the UI/UX |
+| 🛡️ **Accuracy & Reliability** | Understand source verification |
+| 🔐 **Security** | Understand authentication/access |
+| 🧪 **Testing** | Understand validation |
+| 🛠️ **Technology Stack** | Technologies used |
+| 📁 **Repository Structure** | Understand the codebase |
+| 🏆 **Requirement Mapping** | Challenge-to-feature mapping |
+| 👥 **Team** | Team information |
+| 🔗 **Repository** | Source code |
+| 🔮 **Future Scope** | Possible improvements |
+
+---
+
+# 🎯 Project Overview
+
+## What is Learn4All?
+
+**Learn4All — VidyaPath** is a Python-first educational platform built around one simple idea:
+
+> **A student's result should not be the end of the learning process — it should tell the learner what to do next.**
 
 A conventional result system can tell a learner:
 
@@ -56,73 +205,76 @@ Learn4All goes one step further:
 
 > **“Here is the topic that needs attention, the relevant learning material, and the next action you can take.”**
 
-The platform analyses assessment performance, identifies strengths and weak topics, recommends topic-specific resources, and generates an individual learner report. A protected teacher dashboard provides class-level insights so educators can see broader learning gaps.
+The platform analyses assessment performance, identifies strengths and weak topics, recommends topic-specific resources, and generates an individual learner report.
+
+A protected teacher workspace provides **class-level and student-level progress insights**, helping educators identify common learning gaps.
 
 ---
 
-# 🚨 The Problem We Address
+# 🚨 Problem Statement
 
 ## The real-world problem
 
-Students often receive marks after an assessment, but marks alone do not answer the most important learning questions:
+Students often receive marks after an assessment, but marks alone do not answer the questions that matter for the next stage of learning:
 
-- ❓ **What exactly am I weak in?**
-- ❓ **Which topic should I revise first?**
-- ❓ **What resource should I use?**
-- ❓ **Am I improving?**
-- ❓ **What should I do next?**
+- ❓ What exactly am I weak in?
+- ❓ Which topic should I revise first?
+- ❓ Which resource should I use?
+- ❓ Should I revise concepts, practise, or take a quiz?
+- ❓ Am I improving over time?
+- ❓ What should I do next?
 
-Teachers face another challenge: manually examining many assessment records to understand individual weaknesses and common class-level gaps can be time-consuming.
+Teachers face a parallel challenge: analysing many learner results manually to discover **individual weaknesses and common class-level learning gaps** can be time-consuming.
 
-### The gap
+## Existing gap
 
-**Traditional result systems are mainly score-oriented.**
+```text
+Traditional Result System
+        ↓
+       Score
+        ↓
+      Display
+        ✕
+   "What next?"
+```
 
-**Learn4All is action-oriented.**
+## The problem we solve
+
+> **How can assessment data be transformed into personalized, actionable learning support instead of remaining only a collection of marks?**
 
 ---
 
-# 💡 Our Solution
+# 💡 Proposed Solution
 
-Learn4All creates a complete learning loop:
+Learn4All creates a connected path from **assessment → insight → resource → action**.
 
-```text
-                ┌──────────────────┐
-                │ Student Assessment│
-                └────────┬─────────┘
-                         ↓
-                ┌──────────────────┐
-                │ Performance      │
-                │ Analysis         │
-                └────────┬─────────┘
-                         ↓
-             ┌───────────┴───────────┐
-             ↓                       ↓
-       ┌───────────┐           ┌───────────┐
-       │ Strengths │           │ Weak Areas│
-       └───────────┘           └─────┬─────┘
-                                     ↓
-                            ┌─────────────────┐
-                            │ Recommendation  │
-                            │ Engine          │
-                            └────────┬────────┘
-                                     ↓
-                         ┌────────────────────┐
-                         │ Relevant Resources │
-                         │ Video / Notes /    │
-                         │ Quiz / Practice    │
-                         └─────────┬──────────┘
-                                   ↓
-                            ┌───────────────┐
-                            │ Next Action   │
-                            └───────────────┘
-```
+### 01 · Capture
 
-### Core idea
+Assessment results are recorded against a learner, subject and topic.
 
-> **Assessment data → meaningful insight → personalized resource → next learning action**
+### 02 · Analyse
 
-This is the central design philosophy of Learn4All.
+The application calculates topic-wise, subject-wise and overall performance.
+
+### 03 · Identify
+
+Low-performing topics are surfaced as areas requiring attention, while high-performing topics are recognized as strengths.
+
+### 04 · Recommend
+
+The resource recommender matches identified learning gaps with relevant learning resources.
+
+### 05 · Learn
+
+The learner can use available **notes, videos, quizzes and practice material**.
+
+### 06 · Report
+
+An individual learner report combines performance, strengths, weak topics, recommended resources and next actions.
+
+### 07 · Support Teachers
+
+Class-level aggregation helps teachers see common topic gaps and student progress.
 
 ---
 
@@ -130,123 +282,248 @@ This is the central design philosophy of Learn4All.
 
 ## 🎓 SDG 4 — Quality Education
 
-Learn4All supports **inclusive and equitable quality education** by helping learners understand their academic gaps and receive targeted learning support.
+Learn4All supports **inclusive and equitable quality education** by helping learners understand academic gaps and connect performance information with targeted learning support.
 
 ## 🤝 SDG 10 — Reduced Inequalities
 
-The resource recommendation system can consider **accessibility needs** and prefer accessible resources when appropriate, helping reduce barriers to learning.
+The resource model includes accessibility information so accessible resources can be preferred when a learner has recorded accessibility needs.
 
-| SDG Goal | Project Contribution |
+| Educational Challenge | Learn4All Response |
 |---|---|
-| **SDG 4** | Personalized learning support and progress awareness |
-| **SDG 10** | Accessibility-aware resource matching |
+| Learner cannot easily identify weak areas | Topic-level performance analysis |
+| Marks do not explain the next step | Personalized next actions |
+| Generic study material | Subject + topic resource matching |
+| Different resource formats are useful | Video / Notes / Quiz / Practice |
+| Teachers need a broader view | Class-level summary |
+| Learners may have accessibility needs | Accessibility-aware resource preference |
 
 ---
 
-# ✨ Core Features
+# ✨ Features
 
-### 👨‍🎓 Student Portal
+## 👨‍🎓 Student Workspace
 
-**Authentication**
+### Authentication
 - Secure signup/login
 - Password hashing
 - Session-based access
 - Student-specific data isolation
 
-**Learning & Analysis**
+### Learning & Analysis
 - Assessment tracking
 - Subject-wise performance
 - Topic-wise performance
-- Overall average
+- Overall performance
 - Strength detection
 - Weak-topic detection
 - Personalized recommendations
-- Learning resources
 - Individual learner report
 
-**Resources**
+### Learning Resources
 - 🎬 Video
 - 📖 Notes
 - ❓ Quiz
 - ✍️ Practice
 
-### 👩‍🏫 Teacher Portal
+---
 
-- Role-protected teacher login
-- Class-level performance summary
-- Student-wise progress
-- Common weak-topic analysis
-- Individual student view
-- Improvement/progress visibility
+## 👩‍🏫 Teacher Workspace
 
-> **Important:** teacher-only access is enforced at the backend route/authorization level; it is not merely hidden from the interface.
+- 🔒 Role-protected teacher authentication
+- 👥 Class-level performance summary
+- 📊 Student progress monitoring
+- 🎯 Common weak-topic analysis
+- 📈 Improvement/progress information
+- 🔎 Individual student analysis
 
 ---
 
-# 🧠 How the Recommendation Engine Works
+## 🔐 Platform Capabilities
 
-A recommendation is not randomly selected.
+- Password hashing
+- Session authentication
+- Backend role authorization
+- Input validation
+- Exception/error handling
+- SQLite persistence
+- Resource caching
+- Source-relevance checks
+- Reduced-motion support
 
-### Step 1 — Find performance
+---
 
-Assessment scores are grouped by subject and topic.
+# ⚙️ How It Works
 
-### Step 2 — Identify learning gaps
-
-The application compares topic performance with configured thresholds.
-
-- **Below 60% → Weak topic**
-- **80% or above → Strength**
-
-### Step 3 — Match resources
-
-Resources are matched using:
+## Complete Learning Pipeline
 
 ```text
-Subject + Topic + Resource Category
+                    ┌─────────────────┐
+                    │    Assessment   │
+                    └────────┬────────┘
+                             ↓
+                    ┌─────────────────┐
+                    │    Performance  │
+                    │     Analysis    │
+                    └────────┬────────┘
+                             ↓
+                 ┌───────────┴───────────┐
+                 ↓                       ↓
+          ┌─────────────┐         ┌─────────────┐
+          │  Strengths  │         │ Weak Topics │
+          └─────────────┘         └──────┬──────┘
+                                         ↓
+                                ┌─────────────────┐
+                                │ Recommendation  │
+                                │     Engine      │
+                                └────────┬────────┘
+                                         ↓
+                              ┌─────────────────────┐
+                              │ Relevant Resources  │
+                              │ Video / Notes /     │
+                              │ Quiz / Practice     │
+                              └──────────┬──────────┘
+                                         ↓
+                                  ┌──────────────┐
+                                  │ Next Action  │
+                                  └──────────────┘
 ```
 
-### Step 4 — Accessibility preference
-
-If accessibility needs are recorded, accessible matching resources are preferred where available.
-
-### Step 5 — Produce next actions
-
-The learner report connects the weak topic with recommended learning material and a concrete revision action.
-
----
-
-# 🛡️ Accuracy-First Resource Retrieval
-
-For known classroom topics, Learn4All can use curated resource packs.
-
-For other topics, the application can use source-backed MediaWiki/Wikipedia retrieval.
-
-The system deliberately avoids turning an unrelated or ambiguous source into factual educational content.
-
-### Accuracy principle
+## Student journey
 
 ```text
-Relevant verified source
-        ↓
-     Use it
-        │
-        └─────── No reliable source
-                         ↓
-                Do NOT invent facts
+Login
+  ↓
+Welcome
+  ↓
+Dashboard
+  ↓
+Assessment
+  ↓
+Performance
+  ↓
+Weak Topics
+  ↓
+Resources
+  ↓
+Report
 ```
 
-> **No verified source → no fabricated factual lesson.**
+## Teacher journey
 
-This matters because an educational application should prefer **honest unavailability over confident misinformation**.
+```text
+Teacher Login
+      ↓
+Class Overview
+      ↓
+Student Progress
+      ↓
+Common Weak Topics
+      ↓
+Individual Student Analysis
+```
 
 ---
 
-# 🏗️ Object-Oriented Programming
+# 🧠 Recommendation Engine
 
-The project is primarily implemented in Python and demonstrates the required OOP structure.
+The recommendation engine connects **performance data** with **learning resources**.
 
-## Core domain classes
+## Decision Pipeline
+
+```text
+Assessment Score
+       ↓
+Topic Performance
+       ↓
+Is topic below threshold?
+       │
+   ┌───┴───┐
+   │       │
+  YES      NO
+   │       │
+   ▼       ▼
+ Weak    Possible
+ Topic   Strength
+   │
+   ▼
+Find matching resources
+   │
+   ▼
+Subject + Topic + Category
+   │
+   ▼
+Accessibility preference
+   │
+   ▼
+Recommended Resources
+```
+
+## Performance interpretation
+
+| Performance | Interpretation |
+|---:|---|
+| **< 60%** | Weak / focus area |
+| **60%–79.9%** | Developing / improvement area |
+| **≥ 80%** | Strength |
+
+## Resource categories
+
+| Resource | Learning purpose |
+|---|---|
+| 🎬 Video | Visual/audio explanation |
+| 📖 Notes | Concept revision |
+| ❓ Quiz | Knowledge checking |
+| ✍️ Practice | Skill reinforcement |
+
+---
+
+# 🛡️ Accuracy & Reliability
+
+## Why accuracy matters
+
+Learn4All is an educational application. Showing unrelated information as factual learning content can mislead learners.
+
+Therefore, the dynamic resource layer follows an accuracy-first approach.
+
+### Curated content
+
+Known classroom topics can use bundled learning material.
+
+### Dynamic content
+
+Other topics can use source-backed MediaWiki/Wikipedia retrieval.
+
+### Verification flow
+
+```text
+Topic Request
+     ↓
+Source Discovery
+     ↓
+Relevance Check
+     ↓
+┌────┴────┐
+│         │
+PASS     FAIL
+│         │
+▼         ▼
+Use     Withhold
+source  factual content
+```
+
+> **No sufficiently relevant verified source → do not invent factual topic content.**
+
+The application also avoids obvious media/pop-culture/disambiguation contamination and does not simply concatenate unrelated search results.
+
+For arbitrary topics, factual correctness should still be checked against the prescribed school textbook/syllabus.
+
+---
+
+# 🏗️ OOP & Architecture
+
+The project is primarily implemented in **Python** and demonstrates the required Object-Oriented Programming structure.
+
+## Core domain model
 
 ```text
                          ┌──────────────┐
@@ -259,7 +536,6 @@ The project is primarily implemented in Python and demonstrates the required OOP
                          │  Assessment  │
                          └──────┬───────┘
                                 │
-                    belongs to  │
                                 ↓
                          ┌──────────────┐
                          │   Subject    │
@@ -282,25 +558,26 @@ The project is primarily implemented in Python and demonstrates the required OOP
 └──────────────────┘       └──────────────────┘
 ```
 
-### Class responsibilities
+## Core classes
 
 | Class | Responsibility |
 |---|---|
 | `Student` | Learner profile, accessibility needs and assessment history |
-| `Subject` | Represents a subject and its topics |
-| `Assessment` | Stores a score for a subject/topic |
-| `Resource` | Represents a learning resource |
-| `ResourceRecommender` | Matches weak topics with resources |
+| `Subject` | Subject/topic structure |
+| `Assessment` | Assessment score and percentage |
+| `Resource` | Learning resource metadata |
+| `ResourceRecommender` | Matches learning gaps with resources |
 | `LearnerReport` | Builds individual learner insights |
-| `ClassSummary` | Builds aggregate class-level insights |
+| `ClassSummary` | Builds class-level insights |
 
 ---
 
 # 💻 Code Highlights
 
-The implementation keeps the important learning logic in reusable Python classes.
+The important learning logic is kept in reusable Python classes.
 
-### Assessment percentage
+<details>
+<summary><strong>Assessment percentage calculation</strong></summary>
 
 ```python
 class Assessment:
@@ -320,7 +597,10 @@ class Assessment:
         )
 ```
 
-### Weak-topic detection
+</details>
+
+<details>
+<summary><strong>Weak-topic and strength detection</strong></summary>
 
 ```python
 class Student:
@@ -338,193 +618,190 @@ class Student:
             in self.performance_by_topic().items()
             if percentage < self.WEAK_THRESHOLD
         ]
-```
 
-### Personalized resource matching
-
-```python
-def recommend(self, student, limit_per_topic=2):
-    result = {}
-
-    for weak in student.weak_topics():
-        matches = [
-            resource
-            for resource in self.resources
-            if self._same(resource.topic, weak["topic"])
-            and self._same(resource.subject, weak["subject"])
+    def strengths(self):
+        return [
+            {
+                "subject": subject,
+                "topic": topic,
+                "percentage": percentage
+            }
+            for (subject, topic), percentage
+            in self.performance_by_topic().items()
+            if percentage >= self.STRENGTH_THRESHOLD
         ]
-
-        if student.accessibility_needs:
-            matches = (
-                [resource for resource in matches if resource.accessible]
-                or matches
-            )
-
-        result[weak["topic"]] = matches[:limit_per_topic]
-
-    return result
 ```
 
-### Individual report generation
+</details>
+
+<details>
+<summary><strong>Personalized resource matching</strong></summary>
 
 ```python
-return {
-    "student": self.student.name,
-    "overall_average": self.student.overall_average(),
-    "performance_by_subject":
-        self.student.performance_by_subject(),
-    "strengths": self.student.strengths(),
-    "weak_topics": weak,
-    "recommended_resources":
-        self.recommender.recommend(self.student),
-    "next_actions": [
-        f"Revisit '{item['topic']}' using the recommended resources"
-        for item in weak
-    ],
-}
+class ResourceRecommender:
+    """Match weak topics to relevant resources."""
+
+    def recommend(self, student, limit_per_topic=2):
+        result = {}
+
+        for weak in student.weak_topics():
+            matches = [
+                resource
+                for resource in self.resources
+                if self._same(resource.topic, weak["topic"])
+                and self._same(resource.subject, weak["subject"])
+            ]
+
+            if student.accessibility_needs:
+                matches = (
+                    [r for r in matches if r.accessible]
+                    or matches
+                )
+
+            result[weak["topic"]] = matches[:limit_per_topic]
+
+        return result
 ```
 
-> These snippets represent the actual core OOP/analysis logic used by the project.
+</details>
+
+> These examples show the central domain logic behind assessment analysis and personalized resource matching.
 
 ---
 
-# 🔄 End-to-End System Flow
+# 📄 Individual & Class Reporting
 
-```mermaid
-flowchart TD
-    A[User opens Learn4All] --> B{Authentication}
-    B -->|Student| C[Student Dashboard]
-    B -->|Teacher| D[Teacher Dashboard]
-
-    C --> E[Assessment Data]
-    E --> F[Performance Analysis]
-    F --> G[Strengths & Weak Topics]
-    G --> H[Recommendation Engine]
-    H --> I[Video / Notes / Quiz / Practice]
-    I --> J[Individual Learner Report]
-
-    D --> K[Student Progress]
-    K --> L[Class Summary]
-    L --> M[Common Weak Topics]
-```
-
----
-
-# 🖥️ Product Experience
-
-Learn4All is designed as a complete web application rather than a command-line-only prototype.
-
-### Main experience
+## Individual learner report
 
 ```text
-Login / Signup
-      ↓
-Welcome Experience
-      ↓
-Student / Teacher Dashboard
-      ↓
-Separate functional pages
-      ↓
-Analysis + Resources + Reports
+Overall Average
+      +
+Subject Performance
+      +
+Strengths
+      +
+Weak Topics
+      +
+Recommended Resources
+      +
+Next Actions
 ```
 
-### Student journey
+## Class-level summary
 
-**Login → Dashboard → Assessments → Performance → Weak Topics → Resources → Report**
+```text
+Student A ─┐
+Student B ─┼──► Class Performance
+Student C ─┘
 
-### Teacher journey
-
-**Teacher Login → Class Overview → Student Progress → Weak Topics → Insights**
+Weak Topics
+    ↓
+Common Topic Gaps
+    ↓
+Teacher Insight
+```
 
 ---
 
-# 🎨 Interface Design System
+# 🖥️ Interface & Design
 
-The interface follows a consistent premium educational design language:
+Learn4All is designed as a complete web application rather than a plain command-line prototype.
 
-| Design Element | Direction |
+## 🎨 Visual identity
+
+| Element | Design direction |
 |---|---|
 | Background | Warm Ivory / Cream |
 | Surfaces | White / Elevated White |
 | Primary | Deep Burgundy |
 | Highlight | Royal Crimson |
 | Accent | Antique Gold |
+| Text | Dark Charcoal |
 | Typography | Refined Serif + Modern Sans |
 | Depth | Soft cinematic shadows |
-| Motion | Smooth, subtle interaction |
+| Motion | Smooth, subtle, purposeful |
 | Accessibility | Reduced-motion support |
 
-### Visual philosophy
+### Design philosophy
 
 > **Premium enough to impress. Simple enough to use.**
 
----
+The interface combines a premium educational atmosphere with practical navigation.
 
-# 📸 Interface Preview
+### Interaction polish
 
-### 🔐 Login Experience
-
-<img src="static/images/learn4all-login-art-hq.jpg" alt="Learn4All login interface" width="850"/>
-
-*Premium authentication experience with the project's warm ivory, burgundy and gold visual identity.*
-
-### 📊 Dashboard & Learning Workflow
-
-The application includes dedicated interfaces for:
-
-- Student dashboard
-- Assessments
-- Performance analysis
-- Weak topics
-- Learning resources
-- Individual report
-- Teacher dashboard
-- Student progress view
-
-> The repository's source tree contains the complete HTML templates, CSS, JavaScript, images and learning videos used by the working prototype.
+- Page entrance transitions
+- Scroll reveal
+- Card hover/lift
+- Button interaction effects
+- Progress animation
+- Subtle ambient motion
+- Login artwork parallax
+- Reduced-motion handling
 
 ---
 
-# 🧪 Testing & Reliability
+# 🖼️ Interface Preview
 
-The project includes automated tests and focuses on more than visual correctness.
+The repository already contains the application's visual assets under `static/images/` and learning media under `static/videos/`.
 
-### Tested areas
+### Login / Landing Experience
 
-- Python module compilation
-- Core OOP behaviour
-- Assessment calculations
-- Performance analysis
-- Weak-topic detection
-- Strength detection
-- Resource recommendation
-- Accessibility-aware matching
-- Authentication flows
-- Role-based authorization
+<img src="static/images/learn4all-login-art-hq.jpg" alt="Learn4All login experience" width="900"/>
+
+### Main application areas
+
+The working prototype contains dedicated pages for:
+
+- 🔐 Login / Signup
+- 👋 Welcome
+- 📊 Student Dashboard
+- 📝 Assessments
+- 📈 Performance
+- 🎯 Weak Topics
+- 📚 Resources
+- 📄 Learner Report
+- 👩‍🏫 Teacher Dashboard
+- 👤 Student Progress
+- ⚙️ Profile / Settings
+- ℹ️ Help / About / Contact
+
+---
+
+# 🔐 Security & Access Control
+
+## Student access
+
+```text
+Student Login
+     ↓
+Authenticated Session
+     ↓
+Own Student Context
+     ↓
+Own Assessments / Progress / Report
+```
+
+## Teacher access
+
+```text
+Teacher Login
+     ↓
+Role Check
+     ↓
+Authorized Teacher Routes
+     ↓
+Class + Student Progress
+```
+
+### Security mechanisms
+
+- Password hashing
+- Session authentication
+- Backend role checks
 - Input validation
+- Controlled database access
 - Error handling
-- SQLite persistence
-- Resource-engine behaviour
-
-### Design principle
-
-> **A polished interface is useful only when the underlying logic is reliable.**
-
----
-
-# 🔐 Security & Data Handling
-
-Learn4All includes:
-
-- Password hashing through Werkzeug
-- Session-based authentication
-- Backend authorization for teacher routes
-- Input validation
-- SQLite persistence
-- Student-specific dashboard data
-- No pre-populated fake student performance data
-
-The application seeds only the required demo teacher/resource setup; learner information can be created through the application.
 
 ---
 
@@ -564,28 +841,49 @@ CONTACT_MESSAGES
 
 ---
 
+# 🧪 Testing & Validation
+
+The repository includes automated tests and the project focuses on both interface and underlying logic.
+
+## Validation areas
+
+| Area | Purpose |
+|---|---|
+| Python compilation | Catch syntax/module errors |
+| Core OOP tests | Validate domain behaviour |
+| Assessment calculation | Validate percentage logic |
+| Performance analysis | Validate derived indicators |
+| Weak-topic detection | Validate learning-gap logic |
+| Resource recommendation | Validate topic matching |
+| Accessibility preference | Validate resource prioritization |
+| Authentication | Validate account workflow |
+| Authorization | Validate teacher-only access |
+| Persistence | Validate SQLite-backed data |
+| Resource engine | Validate source/fallback behaviour |
+
+### Quick test commands
+
+```bash
+python -m py_compile app.py learn4all.py
+pytest -q
+```
+
+---
+
 # 🛠️ Technology Stack
 
-### Backend
-
-- **Python**
-- **Flask**
-- **SQLite**
-- **Werkzeug**
-
-### Frontend
-
-- **HTML5**
-- **CSS3**
-- **JavaScript**
-- **Jinja2 templates**
-
-### Resource / Media Layer
-
-- **MediaWiki / Wikipedia source-backed retrieval**
-- **Pillow**
-- **FFmpeg / imageio-ffmpeg**
-- Local caching for retrieved/generated content
+| Technology | Role |
+|---|---|
+| 🐍 **Python** | Core application logic + OOP |
+| 🌐 **Flask** | Web application/backend |
+| 🗄️ **SQLite** | Persistent local data |
+| 🧱 **HTML5** | Interface structure |
+| 🎨 **CSS3** | UI, layout and animation |
+| ⚡ **JavaScript** | Client-side interaction |
+| 🧩 **Jinja2** | Dynamic template rendering |
+| 🖼️ **Pillow** | Image/media processing |
+| 🎬 **FFmpeg / imageio-ffmpeg** | MP4 generation |
+| 🌍 **MediaWiki / Wikipedia APIs** | Source-backed dynamic topic retrieval |
 
 ---
 
@@ -594,129 +892,52 @@ CONTACT_MESSAGES
 ```text
 Learn4All/
 │
-├── app.py                     # Flask application & routes
-├── learn4all.py               # Core OOP/domain logic
-├── requirements.txt           # Python dependencies
-├── README.md                  # Project documentation
+├── app.py
+│       └── Flask application, routes and web flow
 │
-├── generate_selected.py       # Selected resource generation
-├── generate_videos.py         # Video generation utilities
-├── patch_resources.py         # Resource maintenance
-├── upgrade_notes.py           # Notes/resource utilities
+├── learn4all.py
+│       └── Python OOP domain models + analysis/recommendation logic
+│
+├── requirements.txt
+│       └── Python dependencies
+│
+├── README.md
+│       └── Project documentation
+│
+├── generate_selected.py
+├── generate_videos.py
+├── patch_resources.py
+├── upgrade_notes.py
 │
 ├── static/
-│   ├── css/                   # Application styling
-│   ├── js/                    # Client-side interaction
-│   ├── images/                # Interface artwork
-│   └── videos/                # Learning videos
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── videos/
 │
-├── templates/                 # Flask/Jinja pages
+├── templates/
 │
-└── tests/                     # Automated tests
+└── tests/
 ```
 
 ---
 
-# 🚀 Run Locally
+# 🏆 HACK-AI-THON 2026 — Requirement Mapping
 
-## Requirements
+Learn4All is aligned with the official **Learn4All – Inclusive Learning Progress & Resource Planner** challenge.
 
-- Python 3.x
-- Internet access for dependency installation
-- A modern web browser
-
-## 1. Clone
-
-```bash
-git clone https://github.com/kumarprasana1805-dot/Learn4All-HackAIThon-2026.git
-cd Learn4All-HackAIThon-2026
-```
-
-## 2. Create virtual environment
-
-```bash
-python -m venv .venv
-```
-
-## 3. Activate — Windows PowerShell
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-## 4. Install dependencies
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-## 5. Run
-
-```bash
-python app.py
-```
-
-## 6. Open
-
-```text
-http://127.0.0.1:5000
-```
-
----
-
-# 🔑 Demo Teacher Account
-
-```text
-Email:    teacher@learn4all.in
-Password: Teacher@123
-```
-
-Use this account to demonstrate the authorized teacher workflow.
-
----
-
-# 👥 Team VidyaNova
-
-## Kumar Prasanna
-
-**Sunbeam School, Ballia, Uttar Pradesh**
-
-## Vaibhav
-
-**SPS International School, Haryana**
-
-### Why Team VidyaNova?
-
-**Vidya** represents knowledge, learning and education.
-
-**Nova** represents a new beginning and a bright direction.
-
-**VidyaNova** therefore represents our vision of using technology to create a smarter, more supportive path for learners.
-
----
-
-# 🏫 HACK-AI-THON 2026
-
-### National Level · Team-Based Project Challenge
-
-**Theme:**  
-Python Fundamentals + Object-Oriented Programming (OOP) + Sustainable Development Goals
-
-### Selected Challenge
-
-**Learn4All – Inclusive Learning Progress & Resource Planner**
-
-### Requirement Mapping
-
-| Challenge Requirement | Learn4All Implementation |
-|---|---|
+| Challenge requirement | Implementation |
+|---|:---:|
+| Primarily Python | ✅ |
+| Python Fundamentals | ✅ |
+| Object-Oriented Programming | ✅ |
 | `Student` class | ✅ |
 | `Subject` class | ✅ |
 | `Assessment` class | ✅ |
 | `Resource` class | ✅ |
 | Store assessment results | ✅ |
 | Performance indicators | ✅ |
-| Weak-topic detection | ✅ |
+| Weak-topic identification | ✅ |
 | Personalized recommendations | ✅ |
 | Video resources | ✅ |
 | Notes resources | ✅ |
@@ -724,115 +945,76 @@ Python Fundamentals + Object-Oriented Programming (OOP) + Sustainable Developmen
 | Practice resources | ✅ |
 | Individual learner report | ✅ |
 | Class-level summary | ✅ |
-| Python/OOP | ✅ |
+| Accessibility-aware resources | ✅ |
 | SDG alignment | ✅ |
+| Functional prototype | ✅ |
 
 ---
 
-# 📊 What the Evaluator Can See
+# 📊 Expected Output
 
-### For a student
-
-```text
-Assessment
-    ↓
-Performance
-    ↓
-Strengths
-    ↓
-Weak Topics
-    ↓
-Recommended Resources
-    ↓
-Next Actions
-    ↓
-Learner Report
-```
-
-### For a teacher
+## Individual learner
 
 ```text
-Student Records
-      ↓
-Class-Level Analysis
-      ↓
-Common Weak Topics
-      ↓
-Individual Progress
-      ↓
-Teacher Insight
+┌──────────────────────────────────────┐
+│        LEARNER PROGRESS REPORT       │
+├──────────────────────────────────────┤
+│ Overall Performance                  │
+│ Subject Performance                  │
+│ Strengths                            │
+│ Weak Topics                          │
+│ Recommended Resources                │
+│ Next Actions                         │
+└──────────────────────────────────────┘
 ```
 
-This creates a clear bridge between **data, learning needs and action**.
+## Teacher
+
+```text
+┌──────────────────────────────────────┐
+│           CLASS SUMMARY              │
+├──────────────────────────────────────┤
+│ Student Performance                  │
+│ Class-Level Insights                 │
+│ Common Weak Topics                   │
+│ Individual Progress                  │
+│ Improvement Information              │
+└──────────────────────────────────────┘
+```
 
 ---
 
-# 🧩 Design Decisions
+# 🧩 Key Design Decisions
 
 ### Why Python?
 
-Python is the primary implementation language required by the challenge and provides a clean way to demonstrate fundamentals, classes, functions, data structures and application logic.
+Python is the primary implementation language required by the challenge and provides a natural way to demonstrate functions, data structures, classes and application logic.
 
 ### Why Flask?
 
-Flask provides a lightweight way to expose the Python learning logic through a browser-based interface.
+Flask provides a lightweight way to expose the Python learning logic through a browser-based application.
 
 ### Why SQLite?
 
-SQLite provides simple persistent local storage without requiring a separate database server.
+SQLite provides persistent local storage without requiring a separate database server.
 
 ### Why OOP?
 
-The domain naturally maps to objects:
+The learning domain naturally maps to objects:
 
 **Student → Assessment → Subject → Resource → Recommendation → Report**
 
-This makes the system modular and easier to extend.
+This keeps the domain logic modular and reusable.
+
+### Why source verification?
+
+Because educational content should not silently turn an unrelated external result into a factual lesson.
 
 ---
 
-# ⚠️ Current Limitations
+# 📋 Submission Readiness
 
-Learn4All is a competition prototype, so some areas can be expanded further:
-
-- Dynamic source retrieval depends on external network availability.
-- Arbitrary-topic factual content depends on the quality/relevance of the retrieved source.
-- Curriculum-specific mapping can be expanded for more boards and subjects.
-- The current prototype uses local SQLite rather than a production cloud database.
-- More institution-specific accessibility options can be added.
-
-The application intentionally does **not** claim verified factual topic content when a reliable source cannot be established.
-
----
-
-# 🔮 Future Scope
-
-Potential extensions include:
-
-- 📚 Board/syllabus-specific curriculum mapping
-- 🧑‍🏫 Richer teacher analytics
-- 📈 Long-term learning trends
-- ♿ Expanded accessibility options
-- 📖 Larger curated resource library
-- 📝 More assessment formats
-- 🏫 Institution-level deployment
-- 🔍 Stronger syllabus-specific source verification
-
----
-
-# 🔗 Repository & Source Code
-
-## GitHub
-
-### **[Learn4All — HACK-AI-THON 2026](https://github.com/kumarprasana1805-dot/Learn4All-HackAIThon-2026)**
-
-**Public Repository · `main` branch**
-
----
-
-# 📋 Submission Checklist
-
-| Item | Status |
+| Deliverable | Status |
 |---|:---:|
 | Project title | ✅ |
 | Team name | ✅ |
@@ -844,39 +1026,95 @@ Potential extensions include:
 | OOP/class design | ✅ |
 | Algorithms & logic | ✅ |
 | Technology stack | ✅ |
-| Testing approach | ✅ |
+| Testing | ✅ |
+| Security/access control | ✅ |
 | Limitations | ✅ |
 | Future scope | ✅ |
-| Run instructions | ✅ |
+| Run guide | ✅ |
 | Demo credentials | ✅ |
 | GitHub repository link | ✅ |
 
 ---
 
-# ❤️ Our Vision
+# ⚠️ Limitations
 
-> ### **A score should not be the end of learning.**
-> ### **It should be the beginning of knowing what to do next.**
+Learn4All is a competition prototype with practical boundaries:
 
-Learn4All — VidyaPath is built around that simple idea:
+- Dynamic external-source retrieval depends on network availability.
+- Arbitrary-topic factual correctness depends on the retrieved source and should be checked against the prescribed syllabus/textbook.
+- Curriculum mapping can be expanded for more boards, subjects and grade levels.
+- The prototype uses local SQLite rather than a production-scale cloud database.
+- The current resource library can be expanded further.
 
-**Understand the learner.  
-Find the gap.  
-Recommend the right support.  
-Take the next step.**
+These limitations are documented intentionally rather than hidden.
 
 ---
 
+# 🔮 Future Scope
+
+Potential extensions include:
+
+- 📚 Board- and syllabus-specific curriculum mapping
+- 🧑‍🏫 More advanced teacher analytics
+- 📈 Long-term learning trends
+- ♿ Expanded accessibility options
+- 📝 More assessment formats
+- 📖 Larger curated resource library
+- 🔍 Stronger textbook-aligned source verification
+- 🏫 Institution-level deployment
+
+---
+
+# 👥 Team VidyaNova
+
+## Team Members
+
+| Member | School |
+|---|---|
+| **Kumar Prasanna** | Sunbeam School, Ballia, Uttar Pradesh |
+| **Vaibhav** | SPS International School, Haryana |
+
+### Why “VidyaNova”?
+
+**Vidya** represents knowledge and learning.
+
+**Nova** represents a new beginning and a bright new direction.
+
+Together, **VidyaNova** represents our vision of creating a smarter and more supportive path for learning.
+
+---
+
+# 🔗 GitHub Repository
+
+## **[Learn4All — HACK-AI-THON 2026](https://github.com/kumarprasana1805-dot/Learn4All-HackAIThon-2026)**
+
+**Public Repository · `main` branch**
+
+The repository contains the project source code, templates, static assets, tests, dependency file and supporting utilities.
+
+---
+
+# ❤️ Our Vision
+
 <div align="center">
 
-## ✦ TEAM VIDYANOVA ✦
+## **A score should not be the end of learning.**
+## **It should be the starting point for the next better step.**
 
-### **Learn Today · Understand Better · Grow Tomorrow**
+<br/>
+
+### **ASSESS → UNDERSTAND → IMPROVE → GROW**
+
+<br/>
+
+# ✦ TEAM VIDYANOVA ✦
+
+**Learn Today · Understand Better · Grow Tomorrow**
 
 **HACK-AI-THON 2026 · National Level**
 
 <br/>
 
-*Built with Python · Powered by OOP · Designed for Learning · Aligned with the SDGs*
+*Built with Python · Structured with OOP · Designed for Learning · Aligned with the SDGs*
 
 </div>
